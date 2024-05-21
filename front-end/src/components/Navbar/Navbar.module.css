@@ -1,0 +1,56 @@
+/* components/Navbar.module.css */
+.navbar {
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0rem;
+    align-items: center;
+  }
+  
+.logo a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.navLinks li {
+  padding: 0 1rem;
+}
+
+.navLinks li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.navLinks li a:hover {
+  color: #04C2C9;
+}
+
+/* .root{
+  flexGrow: 1,
+
+},
+.menuButton: {
+  marginRight: theme.spacing(2),
+},
+.title: {
+  flexGrow: 1,
+},
+.link: {
+  textDecoration: 'none',
+  color: 'inherit',
+},
+.drawerList: {
+  width: 250,
+}, */
