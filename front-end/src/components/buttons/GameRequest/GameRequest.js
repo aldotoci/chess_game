@@ -7,8 +7,7 @@ const GameRequest = ({ usernameData }) => {
     const router = useRouter();
     const [error, setError] = useState(null);
 
-
-    const handleRemoveFriend = async () => {
+    const handleGameRequest = async () => {
         // Send a game request to the user
         const response = await fetch('/api/game-request', {
             method: 'POST',
@@ -35,7 +34,7 @@ const GameRequest = ({ usernameData }) => {
     return (
         <>
             <CustomAlert message={error} severity="error" />   
-            <Button variant="contained" color="success" onClick={handleRemoveFriend}>
+            <Button variant="contained" color="success" onClick={handleGameRequest}>
                 Game Request
             </Button>
         </>

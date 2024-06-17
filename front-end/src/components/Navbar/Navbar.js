@@ -27,6 +27,8 @@ const Navbar = ({ loading }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
+  if (status === "loading") return null;
+
   const toggleDrawer = (open) => () => {
     setDrawerOpen(open);
   };

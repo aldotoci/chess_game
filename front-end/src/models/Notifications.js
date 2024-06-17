@@ -25,6 +25,9 @@ const notificationSchema = new mongoose.Schema({
     fromUsername: {
         type: String,
         required: true
+    },
+    data: {
+        type: Object
     }
 });
 

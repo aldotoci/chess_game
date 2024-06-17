@@ -1,6 +1,8 @@
 // pages/api/new-game.js
 import dbConnect from '../../lib/mongodb';
 import Game from '../../models/Game';
+import Notification from '@/models/Notifications';
+import User from '@/models/User';
 import { getServerSession  } from 'next-auth/next';
 import { authOptions } from "@/pages/api/auth/[...nextauth]"
 
@@ -20,8 +22,8 @@ export default async function handler(req, res) {
 
             // Get the initilizer color randomly 0 or 1
             const randomColor = Math.floor(Math.random() * 2);
-            const initializerColor = randomColor === 0 ? 'white' : 'black';
-            const opponentColor = initializerColor === 'white' ? 'black' : 'white';
+            const initializerColor = randomColor === 0 ? 'w' : 'b';
+            const opponentColor = initializerColor === 'w' ? 'b' : 'w';
             
             const newGame = new Game({
                 initializer,
@@ -30,6 +32,23 @@ export default async function handler(req, res) {
                 initializerColor,
                 opponentColor,
             });
+
+            // Send a notification to the opponent
+            const opponentUser = await User.findById(opponent);
+            const notification = new Notification({
+                type: 'gameRequest',
+                message: `${session.user.username} has sent you a game request.`,
+                user: opponent,
+                fromUsername: session.user.username,
+                data:{
+                    gameId: newGame._id
+                }
+            });
+
+            await notification.save();
+            opponentUser.notifications.push(notification._id);
+
+            await opponentUser.save();
 
             const game = await newGame.save();
             res.status(201).json({gameId: game._id});

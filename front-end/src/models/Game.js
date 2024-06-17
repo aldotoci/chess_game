@@ -5,8 +5,8 @@ const gameSchema = new mongoose.Schema({
     initializer: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     opponent: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     settings: { type: Map, of: String },
-    initializerColor: { type: String, default: 'white'},
-    opponentColor: { type: String, default: 'black'},
+    initializerColor: { type: String, default: 'w'},
+    opponentColor: { type: String, default: 'b'},
     status: { type: String, default: 'pending' },
     moves: [{
         from: String,

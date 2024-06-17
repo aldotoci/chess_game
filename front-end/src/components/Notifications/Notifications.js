@@ -46,11 +46,19 @@ const Notifications = () => {
     };
 
     const handleNotificationClick = (notification) => {
+        console.log('notification', notification)
+        if (notification.type === 'gameRequest') {
+            router.push(`/game/?gameId=${notification.data.gameId}`);
+            return;
+        }
+        
         // Handle notification click logic here
         console.log('Notification clicked:', notification);
 
         // Redirect to the appropriate page
         router.push(linksForNotifications[notification.type] + notification.fromUsername);
+
+
     };
 
     return (

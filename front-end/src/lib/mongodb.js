@@ -1,5 +1,5 @@
 // lib/mongodb.js
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 /**
  * Global is used here to maintain a cached connection across hot reloads
